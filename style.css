@@ -1,0 +1,90 @@
+/* Add a black background color to the top navigation */
+.topnav {
+    overflow: hidden;
+    position: relative;
+  }
+  
+  /* Style the links inside the navigation bar */
+  .topnav a {
+    float: right;
+    color: black;
+    text-align: right;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+
+  .image {
+    height: 100%;
+    margin-top: auto;
+    max-height: 92px;
+    position: relative;
+}
+
+
+  .botnav {
+    overflow: hidden;
+    position: fixed;
+    padding: 15px 30px;
+    border-bottom: 1px solid #dadce0;
+    font-size: 15px;
+    color: rgba(0,0,0,.54);
+    bottom: 0;
+    width: 100%
+}
+
+.botnav a{
+    float: left;
+    display: block;
+    color: rgba(0,0,0,.54);
+    text-align: center;
+    padding: 14px 16px;
+}
+
+#right-side{
+  float: right;
+  vertical-align: middle;
+  }
+
+
+
+  /* Change the color of links on hover */
+  .topnav a:hover {
+    color: black;
+  }
+  
+  /* Add a color to the active/current link */
+  .topnav a.active {
+    color: black;
+  }
+
+
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+
+
+  #loading {
+    width: 2rem;
+    height: 2rem;
+    border: 5px solid #f3f3f3;
+    border-top: 6px solid #9c41f2;
+    border-radius: 100%;
+    margin: auto;
+    visibility: hidden;
+    animation: spin 1s infinite linear;
+}
+#loading.display {
+    visibility: visible;
+}
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

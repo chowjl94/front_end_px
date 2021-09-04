@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Capstone 1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/base.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/components.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/@tailwindcss/forms@0.3.3/dist/forms.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/utilities.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="C:\Users\ChowJ\OneDrive\Desktop\JS and Front End\cap1\style.css" type="text/css">/>
+  </head>
+
+  <body>
+    <header class="border-b border-gray-100">
+      <div class="bg-pink-800 text-white">
+        <div class="max-w-6xl mx-auto px-4 py-2">
+          <nav class="flex items-center justify-between gap-3">
+            <div>
+              <a href="/" class="text-2xl">COMICS</a>
+            </div>
+            <nav class="flex justify-end items-center flex-wrap gap-2">
+            </nav>
+          </nav>
+        </div>
+      </div>
+      <div class="text-gray-500">
+        <div class="max-w-6xl mx-auto px-4 py-2 text-sm">
+          <nav class="flex justify-end items-center flex-wrap gap-5">
+          </nav>
+        </div>
+      </div>
+    </header>
+    <main class="bg-gray-50">
+      <div class="max-w-4xl mx-auto px-3 py-12 space-y-6">
+        <div>
+
+          
+          <h1 class="text-6xl mb-4 font-extrabold">XRCD COMIC STRIP</h1>
+          <div text-align ='center'>
+            <button type="button" id= 'back3' class="relative w-1/2 bg-white border-gray-200 rounded-md shadow-sm py-2 text-sm font-medium text-gray-900 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:z-10 sm:w-auto sm:px-8" >
+              back three
+            </button>
+            <button type="button" id= 'comic-rand-btn' class="relative w-1/2 bg-white border-gray-200 rounded-md shadow-sm py-2 text-sm font-medium text-gray-900 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:z-10 sm:w-auto sm:px-8" >
+              RANDOM
+            </button>
+            <button type="button" id='next3' class="relative w-1/2 bg-white border-gray-200 rounded-md shadow-sm py-2 text-sm font-medium text-gray-900 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:z-10 sm:w-auto sm:px-8">
+              next three
+            </button>
+          </div>
+          <div id="loading"></div>
+          <div >
+          <div class="toggle" id = 'result1' style="width: 20%; text-align: center;"><img src="",alt="" ></div>
+          <div class="toggle" id = 'result2' style="width: 20%; text-align: center;"><img src="",alt=""></div>
+          <div class="toggle" id = 'result3' style="width: 20%; text-align: center;"><img src="",alt=""></div>
+          <div class="toggle" id = 'result4' style="width: 20%; text-align: center;"><img src="",alt=""></div>
+          <div class="toggle" id = 'result5' style="width: 20%; text-align: center;"><img src="",alt=""></div>
+          </div>
+          <div text-align='center'>
+          <button type="button" id= 'left-btn' class="relative w-1/2 bg-white border-gray-200 rounded-md shadow-sm py-2 text-sm font-medium text-gray-900 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:z-10 sm:w-auto sm:px-8" >
+            left
+          </button>
+          <button type="button" id= 'current-btn' class="relative w-1/2 bg-white border-gray-200 rounded-md shadow-sm py-2 text-sm font-medium text-gray-900 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:z-10 sm:w-auto sm:px-8" >
+            current
+          </button>
+          <button type="button" id='right-btn' class="relative w-1/2 bg-white border-gray-200 rounded-md shadow-sm py-2 text-sm font-medium text-gray-900 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:z-10 sm:w-auto sm:px-8">
+            right
+          </button>
+        </div>
+      </br>
+          <div>
+            <button type="button"  id= 'single-btn' class="relative w-1/2 bg-red border-gray-200 rounded-md shadow-sm py-2 text-sm font-medium text-gray-900 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:z-10 sm:w-auto sm:px-8" >
+              Single
+            </button>
+            <button type="button"  id= 'triple-btn' class="relative w-1/2 bg-red border-gray-200 rounded-md shadow-sm py-2 text-sm font-medium text-gray-900 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:z-10 sm:w-auto sm:px-8" >
+              Triple
+            </button>
+            <button type="button"  id= 'fives-btn' class="relative w-1/2 bg-red border-gray-200 rounded-md shadow-sm py-2 text-sm font-medium text-gray-900 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:z-10 sm:w-auto sm:px-8" >
+              Fives
+            </button>
+
+          </div>
+
+          <form id="comic-page-form">
+            <label for ='page-number'>Page number</label>
+            <input
+              type= 'number'
+              id = 'page-number'
+              class="w-full px-5 py-3 placeholder-gray-500 focus:ring-pink-500 focus:border-pink-500 sm:max-w-xs border-gray-300 rounded-md"
+              placeholder="go to your comic page"
+            />
+              <button type="submit" id= 'go-btn' class="relative w-1/2 bg-white border-gray-200 rounded-md shadow-sm py-2 text-sm font-medium text-gray-900 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:z-10 sm:w-auto sm:px-8">
+                GO
+              </button>
+          </form>
+
+        </div>
+      </div>
+
+      <script src="firstjsfile.js"></script>
+      <!-- <script src="test.js"></script> -->
+  </body>
+  
+</html>
