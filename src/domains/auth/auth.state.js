@@ -1,18 +1,18 @@
-import * as React from "react";
-import { fetchJson } from "lib/fetch-json";
-import { BASE_URL } from "const";
+import * as React from 'react';
+import { fetchJson } from 'lib/fetch-json';
+import { BASE_URL } from 'const';
 
-const ACCESS_TOKEN_STORAGE = "auth";
+const ACCESS_TOKEN_STORAGE = 'auth';
 
 const storedAccessToken = localStorage.getItem(ACCESS_TOKEN_STORAGE);
 
 const AUTH_DEFAULT_STATE = storedAccessToken
   ? {
-      status: "authenticated",
+      status: 'authenticated',
       accessToken: storedAccessToken,
     }
   : {
-      status: "anonymous",
+      status: 'anonymous',
       accessToken: null,
     };
 
@@ -20,16 +20,16 @@ const AuthContext = React.createContext();
 
 const authReducer = (state, event) => {
   switch (event.type) {
-    case "login":
+    case 'login':
       return {
         accessToken: event.accessToken,
-        status: "authenticated",
+        status: 'authenticated',
       };
 
-    case "logout":
+    case 'logout':
       return {
         accessToken: null,
-        status: "anonymous",
+        status: 'anonymous',
       };
 
     default:
@@ -42,13 +42,13 @@ export const useAuthState = () => {
 
   const login = (accessToken) =>
     dispatch({
-      type: "login",
+      type: 'login',
       accessToken,
     });
 
   const logout = () =>
     dispatch({
-      type: "logout",
+      type: 'logout',
     });
 
   return {
@@ -68,7 +68,7 @@ export const useAuth = () => {
   const auth = React.useContext(AuthContext);
 
   if (!auth) {
-    throw new Error("Your application must be wrapped with AuthProvider");
+    throw new Error('Your application must be wrapped with AuthProvider');
   }
 
   return auth;
@@ -76,7 +76,7 @@ export const useAuth = () => {
 
 const login = (email, password) =>
   fetchJson(`${BASE_URL}/login`, {
-    method: "POST",
+    method: 'POST',
     body: {
       username: email,
       password,
@@ -87,13 +87,14 @@ export const useLogin = () => {
   const auth = React.useContext(AuthContext);
 
   if (!auth) {
-    throw new Error("Your application must be wrapped with AuthProvider");
+    throw new Error('Your application must be wrapped with AuthProvider');
   }
 
   return function invokeLogin({ email, password }) {
-    return login(email, password).then((res) => {
+    return login(email, password).then(async (res) => {
       auth.login(res.access_token);
-      localStorage.setItem(ACCESS_TOKEN_STORAGE, res.access_token);
+      await localStorage.setItem(ACCESS_TOKEN_STORAGE, res.access_token);
+      return res;
     });
   };
 };
@@ -102,7 +103,7 @@ export const useLogout = () => {
   const auth = React.useContext(AuthContext);
 
   if (!auth) {
-    throw new Error("Your application must be wrapped with AuthProvider");
+    throw new Error('Your application must be wrapped with AuthProvider');
   }
 
   return () => {

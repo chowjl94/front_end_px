@@ -3,7 +3,7 @@
  * @param {RequestInfo} info
  * @param {RequestInit} [init]
  */
-export const fetchJson = (info, { headers, body, ...init } = {}) => {
+ export const fetchJson = (info, { headers, body, ...init } = {}) => {
   const abortController = new AbortController();
 
   const result = fetch(info, {
