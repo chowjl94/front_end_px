@@ -1,18 +1,15 @@
 
-let loadedComics = [];
-const API_URL_latest = 'https://xkcd.vercel.app/?comic=latest'
-const API_URL = 'https://xkcd.vercel.app/?comic='
 
-// const API_URL_latest= 'https://intro-to-js-playground.vercel.app/api/xkcd-comics'
-// const API_URL= 'https://intro-to-js-playground.vercel.app/api/xkcd-comics/'
+const API_URL_latest= 'https://intro-to-js-playground.vercel.app/api/xkcd-comics'
+const API_URL= 'https://intro-to-js-playground.vercel.app/api/xkcd-comics/'
+var global = Math.floor(Math.random()*100);
+
 
 
 
 
 //```````````````````displaying loading```````````````````````````````````````//
-
 const loader = document.querySelector("#loading");
-
 
 // showing loading
 function displayLoading() {
@@ -23,83 +20,78 @@ function displayLoading() {
   }, 2000);
 }
 
-
 // hiding loading 
 function hideLoading() {
   loader.classList.remove("display");
 }
-
-
 //```````````````````displaying loading```````````````````````````````````````//
 
 
 
 //```````````````````getting images```````````````````````````````````````//
+
+
 const getComic = (num) => {
   displayLoading()
-  const apiStr = num==0?API_URL_latest:`${API_URL}${num}`;
+  const apiStr = (num==0||num>=2514)?API_URL_latest:`${API_URL}${num}`;
   fetch(apiStr)
   .then(res => {return res.json()})
   .then(data=>{console.log(data)
               hideLoading()
-              //  loadedComics.push(data)
-              document.getElementById("result1").innerHTML=`<img src=${data.img} />`
+              
+              document.getElementById("result1").innerHTML=`${data.num}<img src=${data.img} /> Title: ${data.title}`
               })
   .catch(err => console.log('Request Failed', err))
   } 
-
   
 const getComic2 = (num) => {
   displayLoading()
-  const apiStr = num==0?API_URL_latest:`${API_URL}${num}`;
+  const apiStr = (num==0||num>=2514)?API_URL_latest:`${API_URL}${num}`;
   fetch(apiStr)
   .then(res => {return res.json()})
   .then(data=>{console.log(data)
                 hideLoading()
               //  loadedComics.push(data)
-              document.getElementById("result2").innerHTML=`<img src=${data.img} />`
+              document.getElementById("result2").innerHTML=`${data.num}<img src=${data.img} /> Title: ${data.title}`
               })
   .catch(err => console.log('Request Failed', err))
   }
 
-
 const getComic3 = (num) => {
   displayLoading()
-  const apiStr = num==0?API_URL_latest:`${API_URL}${num}`;
+  const apiStr = (num==0||num>=2514)?API_URL_latest:`${API_URL}${num}`;
   fetch(apiStr)
   .then(res => {return res.json()})
   .then(data=>{console.log(data)
               hideLoading()
               //  loadedComics.push(data)
-              document.getElementById("result3").innerHTML=`<img src=${data.img} />`
+              document.getElementById("result3").innerHTML=`${data.num}<img src=${data.img} /> Title: ${data.title}`
               })
   .catch(err => console.log('Request Failed', err))
   } 
-
 
 const getComic4 = (num) => {
   displayLoading()
-  const apiStr = num==0?API_URL_latest:`${API_URL}${num}`;
+  const apiStr = (num==0||num>=2514)?API_URL_latest:`${API_URL}${num}`;
   fetch(apiStr)
   .then(res => {return res.json()})
   .then(data=>{console.log(data)
               //  loadedComics.push(data)
               hideLoading()
-              document.getElementById("result4").innerHTML=`<img src=${data.img} />`
+              document.getElementById("result4").innerHTML=`${data.num}<img src=${data.img} /> Title: ${data.title}`
               })
   .catch(err => console.log('Request Failed', err))
   } 
 
-
   const getComic5 = (num) => {
   displayLoading()
-  const apiStr = num==0?API_URL_latest:`${API_URL}${num}`;
+  const apiStr = (num==0||num>=2514)?API_URL_latest:`${API_URL}${num}`;
   fetch(apiStr)
   .then(res => {return res.json()})
   .then(data=>{console.log(data)
               hideLoading()
               //  loadedComics.push(data)
-              document.getElementById("result5").innerHTML=`<img src=${data.img} />`
+              document.getElementById("result5").innerHTML=`${data.num}<img src=${data.img} /> Title: ${data.title}`
               })
   .catch(err => console.log('Request Failed', err))
   } 
@@ -108,51 +100,62 @@ const getComic4 = (num) => {
 
 
 //```````````` when in , load a random page `````````````````````````````//
-let root = Math.floor(Math.random()*100);
-console.log(root)
-const rand_comic = getComic(root)
-++root
-const rand_comic2= getComic2(root)
-++root
-const rand_comic3= getComic3(root)
-++root
-const rand_comic4= getComic4(root)
-++root
-const rand_comic5= getComic5(root)
+const getAllComics=(num)=>{
+  
+  console.log(num)
+  getComic(num)
+  ++num
+  getComic2(num)
+  ++num
+  getComic3(num)
+  ++num
+  getComic4(num)
+  ++num
+  getComic5(num)
+}
+getAllComics(global)
+
 //```````````` when in , load a random page `````````````````````````````//
 
 
 //````````````adding eventlistener `````````````````````````````````````//
-const rand_btn = document.getElementById('comic-rand-btn')
-const right_btn= document.getElementById('right-btn')
-const left_btn = document.getElementById('left-btn')
-const current_btn = document.getElementById('current-btn')
-const next_3= document.getElementById('next3')
-const back_3=document.getElementById('back3')
-let Page_Changing_btn = [rand_btn,right_btn,left_btn,current_btn,next_3,back_3]
-Page_Changing_btn.forEach(btn => btn.addEventListener('click',changeComic))
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const rand_btn = document.getElementById('comic-rand-btn')
+  const right_btn= document.getElementById('right-btn')
+  const left_btn = document.getElementById('left-btn')
+  const current_btn = document.getElementById('current-btn')
+  const next_3= document.getElementById('next3')
+  const back_3=document.getElementById('back3')
+  let Page_Changing_btn = [rand_btn,right_btn,left_btn,current_btn,next_3,back_3]
+  Page_Changing_btn.forEach(btn => btn.addEventListener('click',changeComic))
+})
 
 //````````````adding eventlistener `````````````````````````````````````//
 
 
 
 //`````````` goes to page num ```````````````````//
-const form  = document.querySelector("#comic-page-form")
+const form  = document.querySelector("#comicpageform")
 const pageInput = document.querySelector('#page-number')
 if (form){
-  console.log(form)
-  form.addEventListener('submit',(ev)=>{
-  ev.preventDefault();
-  getPage(ev)
-  console.log('submitted')
+  form.addEventListener('submit',handleSubmit)
+}
+function handleSubmit(ev){
+  
+  ev.preventDefault()
+  let formEl = document.forms.comicpageform
+  let formdata = new FormData(formEl)
+  let num = formdata.get('page-number')
+  console.log(document.forms.comicpageform)
+  console.log(`page num submitted ${num}`)
+  getAllComics(num)
+  global = num
+  console.log(global)
+  
+}
 
-})
-}
-function getPage(e){
-  e.preventDefault();
-  let pageNum = form[0]
-  getComic(pageNum)
-}
 
 
 
@@ -167,6 +170,7 @@ function hideImage(imageId) {
 }
 
 function singles(){
+  getAllComics(global)
   displayLoading()
   showImage('result1');
   hideLoading()
@@ -177,6 +181,7 @@ function singles(){
   
 }
 function threes(){
+  getAllComics(global)
   displayLoading()
   showImage('result1');
   showImage('result2');
@@ -188,6 +193,7 @@ function threes(){
 }
 
 function fivers(){
+  getAllComics(global)
   displayLoading()
   showImage('result1');
   showImage('result2');
@@ -222,7 +228,7 @@ if(fives){
 
 
 //````````````````````````showing next comics``````````````````````````````//
-var current = root
+var current = global
 
 
 function changeComic(event) {
@@ -230,49 +236,54 @@ function changeComic(event) {
   const button = event.target;
  
   if (button.id === 'right-btn') {
-    current = ++root
+    current = ++global
     getComic(current)
+    singles()
     console.log(current)
 
 
   } else if (button.id === 'left-btn') {
 
-    current = --root
+    current = --global
     getComic(current)
+    singles()
     console.log(current)
   
 
 
   }else if (button.id==='comic-rand-btn'){
-    root = Math.floor(Math.random()*100)
+    const root = Math.floor(Math.random()*100)
     current = root
     getComic(current)
+    singles()
+    global = root
     console.log(current)
     
     
   }
   else if (button.id==='current-btn'){
-    current = root
+    current = global
     getComic(current)
+    singles()
     console.log(current)
   }
   else if (button.id === 'next3'){
-    ++root
-    ++root
-    current = ++root
-  
-    getComic(current)
-    console.log(current)
+    ++global
+    ++global
+    ++global
+    getComic(global)
+    threes()
+    console.log(global)
 
   }
   else if (button.id === 'back3'){
-    --root
-    --root
-    current = --root
-    getComic(current)
-    console.log(current)
+    --global
+    --global
+    --global
+    getComic(global)
+    threes()
+    console.log(global)
   }
-
 }
 //````````````````````````showing next comics``````````````````````````````//
 

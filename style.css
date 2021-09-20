@@ -66,6 +66,18 @@
     width: 50%;
   }
 
+  .btn-bundle{
+    text-align:center;
+    display:table-cell;
+    vertical-align: middle;
+  }
+
+  .divider{
+    width:5px;
+    height:auto;
+    display:inline-block;
+}
+
 
   #loading {
     width: 2rem;
