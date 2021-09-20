@@ -1,4 +1,6 @@
-# front_end_px
+# Comic Reader Readme
+
+## Pure JS app, minial styling from external libraries
 
 ### functions
 - able to toggle pages next 3 , previous 3 or next 1 or previous 1
