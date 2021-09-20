@@ -1,5 +1,7 @@
 import * as React from "react";
 
+/// hooks for getting listing items
+
 const getListings = (page, signal) =>
   fetch(`https://ecomm-service.herokuapp.com/marketplace?page=${page}`, {
     signal,

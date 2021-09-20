@@ -24,6 +24,15 @@ const DeleteButton = ({ text, onClick }) => (
   </Button>
 );
 
+const AddToButton = ({ text, onClick }) => (
+  <Button variant="outline" onClick={onClick}>
+    <ShoppingCartIcon className="w-4 h-4 mr-1.5" />
+    {text}
+  </Button>
+);
+
+
+
 const Badge = ({ children }) => (
   <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
     {children}
@@ -32,45 +41,46 @@ const Badge = ({ children }) => (
 
 export const ListingItem = (props) => {
   const [isDeleting, setIsDeleting] = React.useState(false);
+  const {imageUrl,title,price,onlyOne,availableStock,description,onAddToCart} =props
 
   return (
     <div className="relative flex flex-col">
       <div className="group block w-full rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-pink-500 overflow-hidden">
         <img
-          src={props.imageUrl}
+          src={imageUrl}
           alt=""
           className="object-cover pointer-events-none group-hover:opacity-75 h-48 w-full"
         />
         <button type="button" className="absolute inset-0 focus:outline-none">
-          <span className="sr-only">View details for {props.title}</span>
+          <span className="sr-only">View details for {title}</span>
         </button>
       </div>
       <div className="flex-1 flex md:flex-col justify-between items-start md:items-stretch gap-3 px-2">
         <div className="mt-1 flex-1">
           <div className="flex justify-between items-center gap-3">
             <div>
-              RM <span className="text-2xl font-bold">{props.price}</span>
+              RM <span className="text-2xl font-bold">{price}</span>
             </div>
-            {props.onlyOne ? (
+            {onlyOne ? (
               <Badge>Only One</Badge>
             ) : (
               <div className="text-sm text-gray-500">
-                {props.availableStock} piece available
+                {availableStock} piece available
               </div>
             )}
           </div>
           <p className="block text-sm font-medium text-gray-900 truncate pointer-events-none">
-            {props.title}
+            {title}
           </p>
           <p className="block text-sm font-medium text-gray-500 pointer-events-none">
-            {props.description}
+            {description}
           </p>
         </div>
         <div className="flex flex-col md:flex-row gap-3 py-3">
-          {props.onAddToCart ? (
-            <Button variant="primary" onClick={props.onAddToCart}>
-              <ShoppingCartIcon className="h-4 w-4 mr-1.5" /> ADD TO CART
-            </Button>
+          {onAddToCart ? ( <AddToButton 
+            onClick={onAddToCart}
+            text='Add to Cart'
+          />
           ) : (
             <>
               <EditButton />
