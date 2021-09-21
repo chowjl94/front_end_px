@@ -95,6 +95,9 @@ const getComic4 = (num) => {
               })
   .catch(err => console.log('Request Failed', err))
   } 
+
+
+
 //```````````````````getting images```````````````````````````````````````//
 
 
@@ -114,6 +117,8 @@ const getAllComics=(num)=>{
   getComic5(num)
 }
 getAllComics(global)
+
+
 
 //```````````` when in , load a random page `````````````````````````````//
 
