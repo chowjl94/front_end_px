@@ -8,7 +8,7 @@ import "./index.css";
 // import { ApplyJob } from "./pages/apply-job";
 // import { JobDetailsPage } from "./pages/job-details";
 import { LoginPage } from "./pages/login";
-import { Register } from "pages/register";
+// import { Register } from "pages/register";
 
 // import { ListingDetailsPage } from "./pages/listing-details";
 // import { MarketplacePublic } from "./pages/marketplace-public";

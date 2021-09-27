@@ -1,7 +1,7 @@
-import { TrashIcon,ShoppingBagIcon } from "@heroicons/react/solid";
+// import { TrashIcon,ShoppingBagIcon } from "@heroicons/react/solid";
   import { Button } from "components/button";
-  import PropTypes from "prop-types";
-  import * as React from "react";
+//   import PropTypes from "prop-types";
+//   import * as React from "react";
   
   
 

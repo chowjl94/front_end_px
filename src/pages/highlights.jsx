@@ -1,10 +1,10 @@
 import React from 'react';
 import { HighlightTile,useHighlightsListings } from 'domains/highlights';
 import { Button } from 'components/button';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 // import ReactPaginate from "react-paginate"
 import { FaveouritesEmpty, Favourites } from 'domains/highlights/components/favourites';
-import { useCreateHighLightsMutation } from 'domains/highlights/hooks/use-highlights';
+
 
 
 
@@ -85,9 +85,8 @@ export const HighLightPage = () => {
     (<FaveouritesEmpty/>)
     :
 
-    
     ( 
-      !isLoading && highlights && 
+
       
     
       bookmark.map((item,index)=>(
