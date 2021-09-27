@@ -16,6 +16,18 @@ export const AppShell = ({ children }) => {
               >
                 Movies
               </Link>
+              <Link
+                to="/highlights"
+                className="text-xl inline-block mr-4 font-bold text-pink-700 hover:text-pink-900"
+              >
+                Highlights
+              </Link>
+              <Link
+                to="/Career"
+                className="text-xl inline-block mr-4 font-bold text-pink-700 hover:text-pink-900"
+              >
+                career
+              </Link>
 
             </nav>
             {status === 'authenticated' ? (
@@ -25,9 +37,7 @@ export const AppShell = ({ children }) => {
                 <Link to="/login" className="text-sm px-4 py-1 text-pink-500">
                   Login
                 </Link>
-                <Link to="/register" className="text-sm px-4 py-1 text-pink-500">
-                  Register
-                </Link>
+
               </div>
             )}
           </div>

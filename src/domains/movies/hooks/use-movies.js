@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-// import { getListingDetails, getListings } from "../movie.service";
 import { getMovies,getSingle,getSingleComment,postComment,deleteComment } from "../movie.service";
 import { useAuth } from 'domains/auth';
 

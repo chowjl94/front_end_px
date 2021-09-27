@@ -16,7 +16,8 @@ import { Register } from "pages/register";
 import { PageNotFound } from "./pages/404";
 import { MoviesPage } from "pages/movies";
 import { SingleMoviePage } from "pages/single-movie"
-// import { Career } from "./pages/career";
+import { HighLightPage } from "pages/highlights";
+import { Career } from "./pages/career";
 // import { Marketplace } from "./pages/marketplace";
 
 const queryClient = new QueryClient({
@@ -36,9 +37,14 @@ ReactDOM.render(
             <Route path="/login">
               <LoginPage />
             </Route>
-            <Route path="/register">
-              <Register/>
+            <Route path="/highlights">
+              <HighLightPage />
             </Route>
+            <Route path="/career">
+              <Career />
+            </Route>
+
+
 
             <Route path="/" exact>
               <MoviesPage/>
