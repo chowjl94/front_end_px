@@ -25,8 +25,6 @@ export const HighLightPage = () => {
     console.log(`last:${lastIndex},first:${firstIndex},pageNum:${page},Limit:${displayLimit}`)   
 
  
-     
-
     if (isLoading && !highlights) {
         return <div className="p-3">Loading ...</div>;
       }
@@ -34,7 +32,7 @@ export const HighLightPage = () => {
     <div className="max-w-7xl mx-auto pt-16 pb-24 px-4 sm:px-6 lg:px-8">
       <div className="mb-12">
         <h1 className="text-5xl font-extrabold text-gray-900 sm:text-center">
-          Hightlights
+          Soccer Hightlights
         </h1>
       </div>
       {
@@ -89,8 +87,7 @@ export const HighLightPage = () => {
 
       
     
-      bookmark.map((item,index)=>(
-      
+      bookmark.map((item,index)=>(    
      
       <Favourites
       key={index} 
@@ -115,34 +112,4 @@ export const HighLightPage = () => {
 
 
 
-// bookmark.map((item,index) => (
-  // <Link
-  //  href ={((item.videos[0].embed.split('src')[1]).split('frameborder')[0]).slice(2,-2)} 
-  //  key = {index}>
-  //      <Favourites 
-  //             key={index} 
-  //     thumbnail={item.thumbnail}
-  //     title={item.title}
-  //     competition={item.competition}
-  //     video = {((item.videos[0].embed.split('src')[1]).split('frameborder')[0]).slice(2,-2)}
-  //     onClick={()=>{console.log('deleteaga')}}
-  //      />
-  // </Link>
-  
-// ))
 
-
-
-
-// oG
-// bookmark.map((item,index)=>(
-      
-//   <Favourites
-//   key={index} 
-//   thumbnail={item.thumbnail}
-//   title={item.title}
-//   competition={item.competition}
-//   video = {((item.videos[0].embed.split('src')[1]).split('frameborder')[0]).slice(2,-2)}
-//   onClick={()=>{console.log('deleteagassssdfasda')}}
-
-//   />

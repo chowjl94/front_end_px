@@ -1,8 +1,7 @@
-import { useAuth, LogoutButton } from 'domains/auth';
+
 import { Link } from 'react-router-dom';
 
 export const AppShell = ({ children }) => {
-  const { status } = useAuth();
 
   return (
     <>
@@ -14,32 +13,12 @@ export const AppShell = ({ children }) => {
                 to="/"
                 className="text-xl inline-block mr-4 font-bold text-pink-700 hover:text-pink-900"
               >
-                Movies
-              </Link>
-              <Link
-                to="/highlights"
-                className="text-xl inline-block mr-4 font-bold text-pink-700 hover:text-pink-900"
-              >
                 Highlights
               </Link>
-              <Link
-                to="/Career"
-                className="text-xl inline-block mr-4 font-bold text-pink-700 hover:text-pink-900"
-              >
-                career
-              </Link>
+
 
             </nav>
-            {status === 'authenticated' ? (
-              <LogoutButton />
-            ) : (
-              <div className="flex gap-3">
-                <Link to="/login" className="text-sm px-4 py-1 text-pink-500">
-                  Login
-                </Link>
-
-              </div>
-            )}
+            
           </div>
         </div>
       </header>
