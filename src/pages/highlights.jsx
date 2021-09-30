@@ -35,6 +35,7 @@ export const HighLightPage = () => {
         setBookMark(JSON.parse(data))
       }
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     React.useEffect(()=>{
