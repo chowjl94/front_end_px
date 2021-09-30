@@ -3,7 +3,6 @@ import * as ReactDOM from "react-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { AppShell } from "./app-shell";
-import { AuthProvider } from "./domains/auth";
 import "./index.css";
 import { PageNotFound } from "./pages/404";
 import { HighLightPage } from "pages/highlights";
@@ -31,7 +30,6 @@ const queryClient = new QueryClient({
 ReactDOM.render(
   <BrowserRouter>
     <QueryClientProvider client={queryClient}>
-      <AuthProvider>
         <AppShell>
           <Switch>
             <Route path="/highlights">
@@ -46,7 +44,6 @@ ReactDOM.render(
             </Route>
           </Switch>
         </AppShell>
-      </AuthProvider>
     </QueryClientProvider>
   </BrowserRouter>,
   document.querySelector("#root")

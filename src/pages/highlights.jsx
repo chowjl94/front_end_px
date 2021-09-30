@@ -1,28 +1,46 @@
-import React from 'react';
+
 import { HighlightTile,useHighlightsListings } from 'domains/highlights';
 import { Button } from 'components/button';
 // import { useEffect } from 'react';
 // import ReactPaginate from "react-paginate"
 import { FaveouritesEmpty, Favourites } from 'domains/highlights/components/favourites';
-
-
-
-
-
+import React from 'react';
 
 export const HighLightPage = () => {
-    const { data:highlights ,
-      isLoading,
-      page,
-      setPage,
-      displayLimit,
-      bookmark,
-      setBookMark} = useHighlightsListings();
+    const { data:highlights , isLoading,page,setPage,displayLimit,bookmark, setBookMark} = useHighlightsListings();
     // console.log(highlights)
 
     const lastIndex = page * displayLimit
     const firstIndex = lastIndex - displayLimit
-    console.log(`last:${lastIndex},first:${firstIndex},pageNum:${page},Limit:${displayLimit}`)   
+    // console.log(`last:${lastIndex},first:${firstIndex},pageNum:${page},Limit:${displayLimit}`) 
+
+    const handleAdd =(index)=>{
+      localStorage.setItem('bookmark',JSON.stringify(bookmark))
+      bookmark.push(highlights.response.slice(index,index+1)[0])
+      const newUpdatedbookmarklist= [...bookmark]
+      setBookMark(newUpdatedbookmarklist)     
+      console.log(newUpdatedbookmarklist)
+    }  
+
+    const handleDelete =(index)=>{
+      const new1= [...bookmark.slice(0,index)]
+      const new2= [...bookmark.slice(index+1)]
+      const updatedbookmarklist = new1.concat(new2)
+      setBookMark(updatedbookmarklist)
+   }
+
+    React.useEffect(()=>{
+      const data = localStorage.getItem('bookmark')
+      if (data){
+        setBookMark(JSON.parse(data))
+      }
+
+    },[])
+
+    React.useEffect(()=>{
+      localStorage.setItem('bookmark',JSON.stringify(bookmark))
+    })
+
 
  
     if (isLoading && !highlights) {
@@ -64,11 +82,7 @@ export const HighLightPage = () => {
                  <HighlightTile
                   data= {item}
                   key={index}
-                  onAdd={()=>{ bookmark.push(highlights.response.slice(index,index+1)[0])
-                                setBookMark(bookmark)
-                    console.log(highlights.response.slice(index,index+1)[0])
-                    console.log(bookmark)}
-                    }
+                  onAdd={()=>handleAdd(index)}
                  />
             
           ))}
@@ -78,7 +92,7 @@ export const HighLightPage = () => {
 
       <div>
  
-      {((!bookmark) || (bookmark && bookmark.length === 0))
+    {((!bookmark) || (bookmark && bookmark.length === 0))
     ?
     (<FaveouritesEmpty/>)
     :
@@ -86,7 +100,8 @@ export const HighLightPage = () => {
     ( 
 
       
-    
+  //getlocal
+ 
       bookmark.map((item,index)=>(    
      
       <Favourites
@@ -95,10 +110,7 @@ export const HighLightPage = () => {
       title={item.title}
       competition={item.competition}
       video = {((item.videos[0].embed.split('src')[1]).split('frameborder')[0]).slice(2,-2)}
-      onDelete={()=>{//console.log(`${index}`)
-                    delete bookmark[index]
-                    // console.log(bookmark)
-      }}
+      onDelete={()=>handleDelete(index)}
     
       />
     )))
@@ -108,7 +120,6 @@ export const HighLightPage = () => {
      </div>
   );
 };
-
 
 
 

@@ -8,6 +8,9 @@ export const useHighlightsListings = () => {
   // const [post, setPost] = React.useState([])
   const [displayLimit,setDisplayLimit] =React.useState(6)
   const [bookmark, setBookMark]= React.useState([])
+  // const [isLoading, setIsLoading] = React.useState(false)
+
+
 
   const query = useQuery(["highlights"], () => getHighlights(), {
     staleTime: 100000000
@@ -15,11 +18,12 @@ export const useHighlightsListings = () => {
 
 
 
+
   return {
     ...query,
     page,setPage,
     displayLimit,setDisplayLimit,
-    bookmark,setBookMark
+    bookmark,setBookMark,
   };
 };
 
