@@ -1,10 +1,31 @@
-import { LoginForm, useAuthState,LogoutButton } from "domains/auth";
+import { LoginForm, useAuthState,LogoutButton, useAuth } from "domains/auth";
 import { useState, useRef, useEffect } from "react";
 import { ListingItem, useListings, ListingCartItem, useCartListings,addToCart } from "domains/marketplace";
 
 import { CartItems,CartEmpty } from "domains/marketplace/components/cart-item";
 import * as React from "react";
+import { ArrowRightIcon ,ArrowLeftIcon} from "@heroicons/react/solid";
+import { IconButton } from "components/icon-button";
 
+
+
+const RightButton = (props) => {
+  return (
+    <IconButton title="next" onClick={props.onClick}>
+      <ArrowRightIcon className="w-5 h-5 text-gray-400" />
+      {props.text}
+    </IconButton>
+  );
+};
+
+const LeftButton = (props) => {
+  return (
+    <IconButton title="next" onClick={props.onClick}>
+      <ArrowLeftIcon className="w-5 h-5 text-gray-400" />
+      {props.text}
+    </IconButton>
+  );
+};
 
 const getListings = (page, signal) =>
   fetch(`https://ecomm-service.herokuapp.com/marketplace?page=${page}`, {
@@ -16,11 +37,12 @@ export const MarketplacePublic = () => {
   const auth = useAuthState()
   const [listings, setListings] = useState(undefined);
   const [page, setPage] = useState(1);
-  const {isLoading ,cartListings, loadListingsCart, addItem, removeItem} = useCartListings();
+  const {isLoading ,cartListings, addItem, removeItem} = useCartListings();
+  const [totalvalue, setTotalValue] = useState(0)
   
 
-  const loadListing = (pageNum, signal) =>
-  getListings(pageNum, signal).then((data) => setListings(data));
+  const loadListing = (page,signal) =>
+  getListings(page, signal).then((data) => setListings(data));
   
   useEffect(() => {
     const ab = new AbortController();
@@ -30,6 +52,19 @@ export const MarketplacePublic = () => {
     };
   }, [page,auth.status]);
 
+
+  useEffect(() => {
+    const amounts = []
+    cartListings.forEach((item) => amounts.push(item.listing.price * item.quantity))
+
+
+    if (amounts.length === 0) {
+        setTotalValue(0)
+    } else {
+        setTotalValue(amounts.reduce((prev, next) => prev + next))
+    }
+
+}, [cartListings]);
   
 
   return (
@@ -57,44 +92,14 @@ export const MarketplacePublic = () => {
                 </h1>
               </div>
         <div className="flex justify-between">
-          <button
-            className="
-            bg-transparent 
-            hover:bg-pink-600 
-            text-pink-700 
-            font-semibold 
-            hover:text-white 
-            py-2 px-10 
-            border 
-            border-pink-600 
-            hover:border-transparent 
-            rounded-2xl
-            focus:ring-pink-900
-            m-2
-          "
-            disabled={page === 1}
-            onClick={() => setPage(page - 1)}
-          >
-            Prev
-          </button>
-          <button
-            className="bg-transparent 
-            hover:bg-pink-600 
-            text-pink-700 
-            font-semibold 
-            hover:text-white 
-            py-2 px-10 
-            border 
-            border-pink-600 
-            hover:border-transparent 
-            rounded-2xl
-            focus:ring-pink-900
-            m-2
-          "
-            onClick={() => setPage(page + 1)}
-          >
-            Next
-          </button>
+        <LeftButton
+          text={'Prev'}
+          onClick={() => setPage(page - 1)}
+        />
+        <RightButton
+          text={'Next'}
+          onClick={() => setPage(page + 1)}
+        />
         </div>
         <div
           className="
@@ -105,9 +110,8 @@ export const MarketplacePublic = () => {
         "
         >
           {listings &&
-            listings.map((item,index) => (
+            listings.map((item) => (
               <ListingItem
-                index ={index}
                 imageUrl={item.imageUrl}
                 title={item.title}
                 description={item.description}
@@ -133,21 +137,31 @@ export const MarketplacePublic = () => {
         <p>items in your cart</p>
         </div>
       </div>
-    {!isLoading && cartListings &&
-    cartListings.map((item,index)=>(
-      <CartItems
-      key={index}
+    {((!cartListings) || (cartListings && cartListings.length === 0))
+    ?
+    (<CartEmpty/>)
+    :
+    (!isLoading && cartListings && 
+      cartListings.map((item)=>(
+      <CartItems 
+      key={item._id} 
       item={item}
-      onClick= {(removeItem(item.listing._id,auth))}
-      
-  />
-    ))}
+      onClick={()=>(removeItem(item.listing._id,auth))}
+      // onClick={()=>(console.log('delete'))}
 
-    
-    {
-    ((!cartListings) || (cartListings && cartListings.length === 0)) &&
-     <CartEmpty />
+      />
+    )))
     }
+    {
+    isLoading && <h3 className="text-center text-pink-700 mt-10">Updating your cart...</h3>
+    }
+    <span>
+        Total 
+        <span className="text-3xl">
+        $
+           <span>{totalvalue}</span>
+           </span>
+    </span>
     </div>
         </div> 
 

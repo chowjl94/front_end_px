@@ -4,8 +4,8 @@ import { TrashIcon,ShoppingBagIcon } from "@heroicons/react/solid";
   import * as React from "react";
   
   
-  const DeleteButton = ({ text, removeItem }) => (
-    <Button variant="outline" onClick={removeItem}>
+  const DeleteButton = (props) => (
+    <Button variant="outline" onClick={props.onClick}>
       <TrashIcon className="w-4 h-4 mr-1.5" />
     </Button>
   );
@@ -57,14 +57,18 @@ export const CartEmpty = () => {
 
 
 
-// CartItems.propTypes = {
-//         quantity: PropTypes.number.isRequired,
-//         title: PropTypes.string.isRequired,
-//         price: PropTypes.number.isRequired,
-//         imageUrl: PropTypes.string.isRequired,
-//         onClick: PropTypes.func.isRequired
-//       }   
+CartItems.propTypes = {
+    item: PropTypes.shape({
+            quantity: PropTypes.number.isRequired,
+            listing: PropTypes.shape({
+                        title: PropTypes.string.isRequired,
+                        price: PropTypes.number.isRequired,
+                        imageUrl: PropTypes.string.isRequired
+            }).isRequired
+    }).isRequired,
+    onClick: PropTypes.func.isRequired
+  }
 
-// DeleteButton.propTypes={
-//     onClick:PropTypes.func.isRequired
-// }
+DeleteButton.propTypes={
+    onClick:PropTypes.func.isRequired
+}
