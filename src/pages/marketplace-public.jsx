@@ -1,9 +1,9 @@
-import { LoginForm, useAuthState,LogoutButton, useAuth } from "domains/auth";
-import { useState, useRef, useEffect } from "react";
-import { ListingItem, useListings, ListingCartItem, useCartListings,addToCart } from "domains/marketplace";
+import { LoginForm, useAuthState,LogoutButton } from "domains/auth";
+import { useState, useEffect } from "react";
+import { ListingItem, useCartListings } from "domains/marketplace";
 
 import { CartItems,CartEmpty } from "domains/marketplace/components/cart-item";
-import * as React from "react";
+
 import { ArrowRightIcon ,ArrowLeftIcon} from "@heroicons/react/solid";
 import { IconButton } from "components/icon-button";
 
