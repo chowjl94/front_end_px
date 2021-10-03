@@ -10,7 +10,6 @@ const path = require("path");
  */
 module.exports = {
   require: [path.resolve(__dirname, "src/index.css")],
-  target:'serverless',
   components: [
     'src/components/**/*.jsx',
     'src/domains/marketplace/components/**/*.jsx',
