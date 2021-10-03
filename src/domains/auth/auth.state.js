@@ -1,6 +1,7 @@
 import * as React from "react";
 
 const ACCESS_TOKEN_STORAGE = "auth";
+const UID_STORAGE = "uid";
 
 const storedAccessToken = localStorage.getItem(ACCESS_TOKEN_STORAGE);
 
@@ -71,6 +72,14 @@ export const useAuth = () => {
 
   return auth;
 };
+const getUserId = (token) => 
+fetch("https://ecomm-service.herokuapp.com/whoami", {
+  method :'GET',
+  headers: { 
+    accept:"application/json",
+    Authorization: `Bearer ${token}` }
+});
+
 
 const login = (email, password) =>
   fetch("https://ecomm-service.herokuapp.com/login", {
@@ -115,5 +124,49 @@ export const useLogout = () => {
   return () => {
     auth.logout();
     localStorage.removeItem(ACCESS_TOKEN_STORAGE);
+  };
+};
+
+
+const registerUser = (name,email, password,avatar) =>
+  fetch("https://ecomm-service.herokuapp.com/register", {
+    method: "POST",
+    headers: {
+      accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name,
+      email,
+      password,
+      avatar
+
+    }),
+  }).then((res) => {
+    if (res.ok) {
+      return res.json();
+    }
+    throw new Error(res.statusText);
+  });
+
+
+export const useRegister = ()=>{
+  const auth = React.useContext(AuthContext);
+  if (!auth) {
+    throw new Error("Your application must be wrapped with AuthProvider");   
+  }
+  return function invokeReigster({ name, email, password, avatar }) {
+    return registerUser(name, email, password, avatar)
+    .then(()=>login(email,password))
+    .then(async (res) => {
+      const userInfo = await getUserId(res.access_token);
+        res.uid = userInfo.userId;
+        return res;
+    })
+    .then(res => {
+      auth.login(res.access_token, res.uid);
+      localStorage.setItem(ACCESS_TOKEN_STORAGE, res.access_token);
+      localStorage.setItem(UID_STORAGE, res.userId);
+    });
   };
 };

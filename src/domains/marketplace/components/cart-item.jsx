@@ -13,6 +13,7 @@ import { TrashIcon,ShoppingBagIcon } from "@heroicons/react/solid";
   
   export const CartItems = (props) => {  
     const { item, onClick } = props
+
     const { quantity, listing } = item;
     const { imageUrl, title, price } = listing;
     return (
@@ -58,6 +59,7 @@ export const CartEmpty = () => {
 
 
 CartItems.propTypes = {
+    
     item: PropTypes.shape({
             quantity: PropTypes.number.isRequired,
             listing: PropTypes.shape({
