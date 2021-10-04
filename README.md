@@ -1,6 +1,13 @@
+# Links to app and styleguide
+
+Netlify link to styelguide: https://styleguidistd3.netlify.app/
+Netlify link to react app: https://shoppingd3.netlify.app
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 
 ## Available Scripts
 
