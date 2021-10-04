@@ -26,17 +26,20 @@
       if (res.ok) {
         return res.json();
       }
+
+  
       const error = new Error(res.statusText);
       error.response = res;
       throw error;
     })
+
+
     .catch((err) => {
       if (err.name !== "AbortError") {
         throw err;
       }
     });
-
   result.cancel = () => abortController.abort();
-
+  
   return result;
 };

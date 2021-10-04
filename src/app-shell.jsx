@@ -10,6 +10,12 @@ export const AppShell = ({ children }) => {
         <div className="px-4">
           <div className="flex justify-between items-center py-2 max-w-7xl mx-auto border-b border-gray-200">
             <nav className="flex items-center">
+            <Link
+            to="/register"
+            className="text-xl inline-block mr-4 font-bold text-pink-700 hover:text-pink-900"
+              >
+              Register
+              </Link>
               <Link
                 to="/"
                 className="text-xl inline-block mr-4 font-bold text-pink-700 hover:text-pink-900"
@@ -24,9 +30,6 @@ export const AppShell = ({ children }) => {
               <div className="flex gap-3">
                 <Link to="/login" className="text-sm px-4 py-1 text-pink-500">
                   Login
-                </Link>
-                <Link to="/register" className="text-sm px-4 py-1 text-pink-500">
-                  Register
                 </Link>
               </div>
             )}

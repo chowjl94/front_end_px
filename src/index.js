@@ -1,23 +1,17 @@
-import * as React from "react";
+// import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { AppShell } from "./app-shell";
 import { AuthProvider } from "./domains/auth";
 import "./index.css";
-// import { ApplyJob } from "./pages/apply-job";
-// import { JobDetailsPage } from "./pages/job-details";
-import { LoginPage } from "./pages/login";
-import { Register } from "pages/register";
 
-// import { ListingDetailsPage } from "./pages/listing-details";
-// import { MarketplacePublic } from "./pages/marketplace-public";
-// import { ShoppingCart } from "./pages/shopping-cart";
+import { LoginPage } from "./pages/login";
+import { RegisterForm } from "domains/auth/components/register-form";
 import { PageNotFound } from "./pages/404";
 import { MoviesPage } from "pages/movies";
 import { SingleMoviePage } from "pages/single-movie"
-// import { Career } from "./pages/career";
-// import { Marketplace } from "./pages/marketplace";
+
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -33,11 +27,11 @@ ReactDOM.render(
       <AuthProvider>
         <AppShell>
           <Switch>
+          <Route path='/register'>
+            <RegisterForm/>
+          </Route>
             <Route path="/login">
               <LoginPage />
-            </Route>
-            <Route path="/register">
-              <Register/>
             </Route>
 
             <Route path="/" exact>

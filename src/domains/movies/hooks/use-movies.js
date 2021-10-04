@@ -45,7 +45,7 @@ export const useCreateCommentMutation =()=>{
 export const useDeleteCommentMutation =()=>{
   const queryClient = useQueryClient()
   const {accessToken} = useAuth()
-  return useMutation((data)=>deleteComment({data,token:accessToken},{
+  return useMutation((id)=>deleteComment({id,token:accessToken},{
     onSuccess: ()=> queryClient.invalidateQueries('deleteComments')
   }))
 }

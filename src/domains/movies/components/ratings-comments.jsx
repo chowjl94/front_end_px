@@ -14,7 +14,7 @@ const DeleteButton = (props) => {
 
 
 
-export const RatingComments = ({user,formik,data,isLoading, authStatus,onDelete})=>{
+export const RatingComments = ({user,formik,data,isLoading, authStatus,onDelete,id})=>{
     if (isLoading){
         return (
             <div className="py-5">
@@ -33,10 +33,12 @@ export const RatingComments = ({user,formik,data,isLoading, authStatus,onDelete}
 
            data.map((comment,index) => (
           <div
-          key={index}
+          key={comment._id}
           className="flex justify-between items-center px-4 sm:px-6 py-3 bg-white">
-          <p>{comment.content}</p>
-          <p>rated:{comment.rating}</p>
+          <p>{`${index+1}.`}</p>
+          <p>{`${comment.content}`}</p>
+          {/* <p>{`${comment._id}`}</p> */}
+          <p>{`rated: ${comment.rating} / 5`}</p>
           {onDelete && <DeleteButton onClick={onDelete} />}
           </div>
           
@@ -54,14 +56,14 @@ export const RatingComments = ({user,formik,data,isLoading, authStatus,onDelete}
              />
 
                 <TextField
-                label="Comments"
+                label="Content"
                 type="text"
                 className="w-full"
                 value={formik.values.content}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                name="comments"
-                id="comments"
+                name="content"
+                id="content"
                 />
         {formik.touched.comments && formik.errors.comments && (
             <div className="block text-xs text-red-500">{formik.errors.comments}</div>

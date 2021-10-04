@@ -17,11 +17,13 @@ export const MovieItemIndiv = ({ movieId }) => {
 
   const formik = useFormik({
     initialValues:{ 
-      ratings: null, 
-      comments:'' },
+      rating: null, 
+      content:'' },
     onSubmit:(values)=>{
-      console.log({values})
-      commentPost.mutate({values, movieId})
+      console.log(values)
+      console.log(movieId)
+      console.log({values,movieId})
+      commentPost.mutate({...values, movieId})
     }
   })
 
@@ -35,10 +37,17 @@ export const MovieItemIndiv = ({ movieId }) => {
   if (!singleMovie) {
     return <div className="p-3">Issue with retrieving data</div>;
   }
+  const _deleteComment = (id) => {
+    // console.log(commentsSingle.length)
+    // console.log(commentsSingle[0]._id)
+    // console.log(commentsSingle)
+    id = commentsSingle[0]._id
+    
+    commentDelete.mutate(id)};
+
+
+  const { posterUrl, releaseDate, title, overview, adult} = singleMovie
   
-
-  const { posterUrl, releaseDate, title, overview, adult } = singleMovie
-
   return (
     <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
       <div className="flex movie__detail">
@@ -70,7 +79,8 @@ export const MovieItemIndiv = ({ movieId }) => {
         formik={formik}
         user={accessToken}
         authStatus={status}
-        onDelete={(id) => commentDelete.mutate(id)}
+        
+        onDelete={_deleteComment}
                 
 
       />

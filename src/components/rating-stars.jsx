@@ -1,4 +1,3 @@
-import React from 'react';
 
 export const StarRating = ({ value, onChange, name, ...restProps }) => {
   const _onChange = (newRating) => {

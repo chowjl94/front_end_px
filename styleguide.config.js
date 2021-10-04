@@ -14,4 +14,5 @@ module.exports = {
     process.env.NODE_ENV === "production"
       ? createWebpackProdConfig(cracoConfig)
       : createWebpackDevConfig(cracoConfig),
+      components: 'src/{components,domains/**/components}/**/*.jsx',
 };
