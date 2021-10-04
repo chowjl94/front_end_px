@@ -1,6 +1,6 @@
 # Links to app and styleguide
 
-Netlify link to styelguide: https://styleguidistd3.netlify.app/ .\
+Netlify link to styelguide: https://styleguidistd3.netlify.app/ \
 Netlify link to react app: https://shoppingd3.netlify.app
 
 
