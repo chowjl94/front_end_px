@@ -2,6 +2,9 @@
 import { Button } from "components/button";
 import { TextField } from "components/text-field";
 import * as React from "react";
+import { useHistory } from "react-router";
+import { useLogin } from '../auth.state';
+
 
 const registerUser = (name,email, password,avatar) =>
   fetch("https://ecomm-service.herokuapp.com/register", {
@@ -24,36 +27,34 @@ const registerUser = (name,email, password,avatar) =>
     throw new Error(res.statusText);
   });
 
-export const RegisterForm = ({ onSuccess }) => {
+export const RegisterForm = () => {
   const [name,setName] = React.useState("")
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [avatar, setAvatar] = React.useState('');
-  
   const [status, setStatus] = React.useState("idle");
-
   return (
     <div className="max-w-md mx-auto m-6 shadow">
       <form
         onSubmit={(ev) => {
           ev.preventDefault();
-          console.log(status)
-          setStatus("loading");
+          setStatus('loading');
           console.log(status)
           registerUser(name,email, password,avatar)
-            .then((res) => onSuccess(res.access_token))
-            .catch(() => setStatus("error"));
+            .then((res) => res.access_token)              
+            .catch(() => {setStatus("error")})
           console.log(status)
+          
         }}
         className="p-6"
       >
-        {/* {status === "error" && (
+        {(status === "error") && (
           <div className="p-2 text-red-800 bg-red-200 rounded-sm">
-            Fail to login.
+            Fail to Register
           </div>
-        )} */}
+        )}
         
-        {status ==="loading" && (
+        {(status ==="loading") && (
           <div className="p-2 text-red-800 bg-red-200 rounded-sm">
             Register Success Please login
           </div>

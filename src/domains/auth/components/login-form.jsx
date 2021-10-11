@@ -5,7 +5,7 @@ import { TextField } from 'components/text-field';
 import * as React from 'react';
 import { useLogin } from '../auth.state';
 
-export const LoginForm = () => {
+export const  LoginForm = () => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [status, setStatus] = React.useState('idle');
@@ -25,9 +25,10 @@ export const LoginForm = () => {
                 return;
               }
 
-              history.push('/');
+            history.push('/');
             })
-            .catch(() => setStatus('error'));
+            .catch(() => setStatus('error'))
+            console.log(status);
         }}
         className="p-6"
       >

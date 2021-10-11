@@ -13,6 +13,7 @@ import { MoviesPage } from "pages/movies";
 import { SingleMoviePage } from "pages/single-movie"
 
 
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {

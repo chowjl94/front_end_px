@@ -1,9 +1,10 @@
-import { RegisterForm } from 'domains/auth/components/register-form';
+import { RegisterForm } from 'domains/auth/components/register-formv2';
 import { Redirect } from 'react-router-dom';
 import { useAuthState } from 'domains/auth/auth.state';
 
 export const Register = () => {
   const auth = useAuthState()
+
   if (auth.status === 'authenticated') {
     return <Redirect to="/" />
   }else

@@ -1,5 +1,6 @@
 
 import { useFormik } from 'formik';
+import React from 'react';
 
 
 import { useAuth } from 'domains/auth';
@@ -14,6 +15,7 @@ export const MovieItemIndiv = ({ movieId }) => {
   const { status, accessToken } = useAuth();
   const commentPost= useCreateCommentMutation()
   const commentDelete = useDeleteCommentMutation()
+  const [counter ,setCounter] = React.useState(1)
 
   const formik = useFormik({
     initialValues:{ 
@@ -42,8 +44,8 @@ export const MovieItemIndiv = ({ movieId }) => {
     // console.log(commentsSingle[0]._id)
     // console.log(commentsSingle)
     id = commentsSingle[0]._id
-    
-    commentDelete.mutate(id)};
+    commentDelete.mutate(id)
+    setCounter(counter+1)};
 
 
   const { posterUrl, releaseDate, title, overview, adult} = singleMovie
