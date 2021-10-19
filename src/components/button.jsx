@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 export const Button = ({ type = "button", variant, render, ...props }) => {
   const className = cn(
-    "inline-flex justify-center items-center py-2 px-4 border shadow-sm text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500",
+    "inline-flex justify-center items-center py-1/2 px-3 border shadow-sm text-sm font-medium rounded-md focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-pink-500",
     variant && classByVariant[variant],
     props.className
   );

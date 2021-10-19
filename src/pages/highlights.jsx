@@ -1,9 +1,10 @@
 
-import { HighlightTile,useHighlightsListings } from 'domains/highlights';
+import { HighlightTile } from 'domains/highlights';
 import { Button } from 'components/button';
-// import { useEffect } from 'react';
 // import ReactPaginate from "react-paginate"
-import { FaveouritesEmpty, Favourites } from 'domains/highlights/components/favourites';
+import { useHighlightsListings } from 'domains/highlights';
+import { FaveouritesEmpty } from 'domains/highlights/components/favouritesempty';
+import { Favourites } from 'domains/highlights/components/favourites';
 import React from 'react';
 
 export const HighLightPage = () => {
@@ -48,12 +49,35 @@ export const HighLightPage = () => {
         return <div className="p-3">Loading ...</div>;
       }
     return(
+      
     <div className="max-w-7xl mx-auto pt-16 pb-24 px-4 sm:px-6 lg:px-8">
       <div className="mb-12">
         <h1 className="text-5xl font-extrabold text-gray-900 sm:text-center">
           Soccer Hightlights
         </h1>
       </div>
+      <div className= 'flex space-x-6'>
+ 
+        {((!bookmark) || (bookmark && bookmark.length === 0))
+        ?
+        (<FaveouritesEmpty/>)
+        :
+
+        ( 
+
+          
+          bookmark.map((item,index)=>(    
+          
+          <Favourites
+          key={index} 
+          thumbnail={item.thumbnail}
+          title={item.title}
+          competition={item.competition}
+          video = {((item.videos[0].embed.split('src')[1]).split('frameborder')[0]).slice(2,-2)}
+          onDelete={()=>handleDelete(index)}        
+          />
+        )))}
+   </div>
       {
         highlights && highlights.length === 0 ? (
         <>No Highlights</>
@@ -90,34 +114,6 @@ export const HighLightPage = () => {
         </div>
         </div>
       )}
-
-      <div>
- 
-    {((!bookmark) || (bookmark && bookmark.length === 0))
-    ?
-    (<FaveouritesEmpty/>)
-    :
-
-    ( 
-
-      
-  //getlocal
- 
-      bookmark.map((item,index)=>(    
-     
-      <Favourites
-      key={index} 
-      thumbnail={item.thumbnail}
-      title={item.title}
-      competition={item.competition}
-      video = {((item.videos[0].embed.split('src')[1]).split('frameborder')[0]).slice(2,-2)}
-      onDelete={()=>handleDelete(index)}
-    
-      />
-    )))
-    }
-
-      </div>
      </div>
   );
 };

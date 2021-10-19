@@ -16,6 +16,14 @@ export const AppShell = ({ children }) => {
                 Highlights
               </Link>
 
+              <Link
+              to = "/bookmarks"
+              className="text-xl inline-block mr-4 font-bold text-pink-700 hover:text-pink-900"
+              >
+              Bookmarks
+              </Link>
+              
+
 
             </nav>
             

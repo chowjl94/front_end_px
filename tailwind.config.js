@@ -1,3 +1,4 @@
+const { colors } = require("tailwindcss/defaultTheme");
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
@@ -5,13 +6,19 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      colors:{
+        fuchsia:colors.fuchsia,
+      },
       fontFamily: {
         sans: ["Inter var", ...defaultTheme.fontFamily.sans],
       },
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      animation:['motion-safe','motion-reduce'],
+      display:['group-hover']
+    },
   },
   plugins: [
     require("@tailwindcss/forms"),
