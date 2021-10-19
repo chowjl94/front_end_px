@@ -8,7 +8,7 @@ A soccer highlight api containing clips of soccer matches from la liga to bundes
 "https://www.scorebat.com/video-api/v3"
 
 ### Project Requirements
-[Requirements](./misc/front_end req.pdf) please see file in misc folder
+ please see file in misc folder
 
 ## Available Scripts
 
