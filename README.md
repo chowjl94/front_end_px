@@ -1,8 +1,14 @@
-### Project Requirements
+### A React single-page application (SPA) that has at least a listing page and a details page showing data from API
+
+### netlify link
+https://highlightscp2.netlify.app/
 
 ### API used
 A soccer highlight api containing clips of soccer matches from la liga to bundesliga and more
 "https://www.scorebat.com/video-api/v3"
+
+### Project Requirements
+[Requirements](./misc/front_end req.pdf) please see file in misc folder
 
 ## Available Scripts
 
