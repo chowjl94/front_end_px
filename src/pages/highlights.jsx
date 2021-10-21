@@ -21,7 +21,6 @@ export const HighLightPage = () => {
 
       bookmark.push(highlights.response.slice(id1,id1+1)[0])
       
-      
       const newUpdatedbookmarklist= [...bookmark]
       setBookMark(newUpdatedbookmarklist)     
       console.log(highlights.response.slice(id1,id1+1))
@@ -34,7 +33,7 @@ export const HighLightPage = () => {
       const new2= [...bookmark.slice(index+1)]
       const updatedbookmarklist = new1.concat(new2)
       setBookMark(updatedbookmarklist)
-      //2nd use effect will set the local storage
+     
    }
    
   
