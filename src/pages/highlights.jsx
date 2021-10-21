@@ -8,50 +8,28 @@ import { Favourites } from 'domains/highlights/components/favourites';
 import React from 'react';
 
 export const HighLightPage = () => {
-    const { data:highlights , isLoading,page,setPage,displayLimit,bookmark, setBookMark} = useHighlightsListings();
-    console.log(highlights)
+    const { data:highlights ,
+             isLoading,
+             page,setPage,
+             displayLimit,
+             bookmark,
+             setBookMark,
+             handleDelete} = useHighlightsListings();
+    // console.log(highlights)
 
     const lastIndex = page * displayLimit
     const firstIndex = lastIndex - displayLimit
-    console.log(`last:${lastIndex},first:${firstIndex},pageNum:${page},Limit:${displayLimit}`) 
+    // console.log(`last:${lastIndex},first:${firstIndex},pageNum:${page},Limit:${displayLimit}`) 
 
     const handleAdd =(index)=>{
       const id1= index + ((page-1)*displayLimit)
-      // bookmark.push(highlights.response.slice(index,index+1)[0])
-
-      bookmark.push(highlights.response.slice(id1,id1+1)[0])
-      
+      bookmark.push(highlights.response.slice(id1,id1+1)[0])      
       const newUpdatedbookmarklist= [...bookmark]
       setBookMark(newUpdatedbookmarklist)     
-      console.log(highlights.response.slice(id1,id1+1))
+      // console.log(highlights.response.slice(id1,id1+1))
 
     }  
 
-    const handleDelete =(index)=>{
-      localStorage.setItem('bookmark',JSON.stringify(bookmark))
-      const new1= [...bookmark.slice(0,index)]
-      const new2= [...bookmark.slice(index+1)]
-      const updatedbookmarklist = new1.concat(new2)
-      setBookMark(updatedbookmarklist)
-     
-   }
-   
-  
-    React.useEffect(()=>{
-      const data = localStorage.getItem('bookmark')
-      if (data){
-        setBookMark(JSON.parse(data))
-      }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[])
-
-    React.useEffect(()=>{
-      localStorage.setItem('bookmark',JSON.stringify(bookmark))
-    })
-
-
- 
     if (isLoading && !highlights) {
         return <div className="p-3">Loading ...</div>;
       }

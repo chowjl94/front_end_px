@@ -16,6 +16,28 @@ export const useHighlightsListings = () => {
   const query = useQuery(["highlights"], () => getHighlights(), {
     staleTime: 100000000
   });
+  const handleDelete =(index)=>{
+    localStorage.setItem('bookmark',JSON.stringify(bookmark))
+    const new1= [...bookmark.slice(0,index)]
+    const new2= [...bookmark.slice(index+1)]
+    const updatedbookmarklist = new1.concat(new2)
+    setBookMark(updatedbookmarklist)
+   
+ }
+
+ React.useEffect(()=>{
+  const data = localStorage.getItem('bookmark')
+  if (data){
+    setBookMark(JSON.parse(data))
+  }
+
+// eslint-disable-next-line react-hooks/exhaustive-deps
+},[])
+
+React.useEffect(()=>{
+  localStorage.setItem('bookmark',JSON.stringify(bookmark))
+})
+
 
 
 
@@ -26,6 +48,7 @@ export const useHighlightsListings = () => {
     count,setCount,
     displayLimit,setDisplayLimit,
     bookmark,setBookMark,
+    handleDelete
   };
 };
 
