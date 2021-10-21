@@ -5,6 +5,7 @@ import { getHighlights } from "../highlights.service";
 
 export const useHighlightsListings = () => {
   const [page, setPage] = React.useState(1);
+  const [count,setCount] =React.useState(0)
   // const [post, setPost] = React.useState([])
   const [displayLimit,setDisplayLimit] =React.useState(6)
   const [bookmark, setBookMark]= React.useState([])
@@ -22,6 +23,7 @@ export const useHighlightsListings = () => {
   return {
     ...query,
     page,setPage,
+    count,setCount,
     displayLimit,setDisplayLimit,
     bookmark,setBookMark,
   };

@@ -37,8 +37,6 @@ import { Button } from "components/button";
 
         </div>
 
-
-            
             
 
 ```
